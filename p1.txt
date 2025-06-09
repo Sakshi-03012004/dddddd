@@ -1,0 +1,514 @@
+PROGRAM:01
+
+✅ Install Maven
+	1.	Download the latest Maven binary ZIP from the official site. (e.g., apache-maven-3.9.6-bin.zip)
+	2.	Extract the ZIP file.
+	3.	Move the extracted folder to a suitable location (e.g., C:\apache-maven-3.9.6).
+	4.	Go inside the bin folder (e.g., C:\apache-maven-3.9.6\bin).
+	5.	Copy the path of the bin folder.
+	6.	Set environment variable:
+	•	Search for Environment Variables in Windows.
+	•	Under System variables, find and edit Path.
+	•	Add the copied bin path (e.g., C:\apache-maven-3.9.6\bin).
+	7.	Save the changes.
+	8.	Verify Maven installation: Open Command Prompt and run:(mvn --version)
+
+⸻
+
+✅ Install Java JDK (SDK)
+	1.	Download and install the latest JDK (Java Development Kit) for Windows (x64 installer).
+	2.	After installation, go to:(C:\Program Files\Java\jdk-<version>\bin)
+        3. Copy the path to the bin folder.
+	4.	Set environment variable:
+	•	Edit the Path system variable.
+	•	Add the copied JDK bin path.
+	5.	Save the changes.
+	6.	Verify Java installation: Open Command Prompt and run:(java --version)
+
+⸻
+
+✅ Install Gradle
+	1.	Download the latest Gradle binary ZIP from the official site.
+	2.	Extract the ZIP file.
+	3.	Move the extracted folder to a location like C:\Gradle.
+	4.	Go into the bin folder (e.g., C:\Gradle\gradle-8.0\bin).
+	5.	Copy the path.
+	6.	Set environment variable:
+	•	Edit the Path variable under System Variables.
+	•	Add the copied bin path.
+	7.	Save the changes.
+	8.	Verify Gradle installation: Open Command Prompt and run:(gradle --version)
+
+PROGRAM-02
+
+mkdir mavenproject1
+cd mavenproject1
+mvn archetype:generate -DgroupId=com.example -DartifactId=myapp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+cd myapp
+mvn compile
+mvn test
+mvn package
+java -cp target/myapp-1.0-SNAPSHOT.jar com.example.App
+
+PROGRAM:03
+
+✅ Install Java JDK (SDK)
+	1.	Download and install the latest JDK (Java Development Kit) for Windows (x64 installer).
+	2.	After installation, go to:(C:\Program Files\Java\jdk-<version>\bin)
+        3. Copy the path to the bin folder.
+	4.	Set environment variable:
+	•	Edit the Path system variable.
+	•	Add the copied JDK bin path.
+	5.	Save the changes.
+	6.	Verify Java installation: Open Command Prompt and run:(java --version)
+
+
+📥 1. Install Gradle
+
+Follow the earlier instructions to:
+	•	Download Gradle
+	•	Extract the ZIP file
+	•	Add bin path to your system environment variables(gradle --version)
+mkdir sakshi 
+cd sakshi
+mkdir gradleproject
+cd gradleproject
+mkdir groovyproject
+cd groovyproject
+gradle init --type java-application
+enter 21
+enter
+press1
+press1
+no
+gradle run 
+gradle build
+gradle init --type java-application
+enter 21
+enter
+press2
+press1
+no
+gradle run 
+gradle build
+
+PROGRAM:04
+
+mvn archetype:generate -DgroupId=com.example -DartifactId=maven-example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+cd maven-example
+notepad pom.xml
+.....
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>maven-example</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>com.example.App</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+.......
+Edit App.java:
+Navigate to:
+src/main/java/com/example/App.java
+(Paste the provided Java code and save)
+........
+package com.example;
+
+public class App {
+    public static void main(String[] args) {
+        System.out.println("Hello, Maven");
+        System.out.println("This is the simple realworld example....");
+        int a = 5;
+        int b = 10;
+        System.out.println("Sum of " + a + " and " + b + " is " + sum(a, b));
+    }
+
+    public static int sum(int x, int y) {
+        return x + y;
+    }
+}
+........
+mvn clean install
+mvn exec:java -Dexec.mainClass="com.example.App"
+cd maven-example
+gradle init
+Choose: Yes
+Choose DSL: 2 (Groovy)
+Choose: No
+GO INSIDE MAVEN EXAMPLE
+Edit build.gradle:
+(Paste the provided build.gradle content and save)
+.....
+plugins {
+    id 'java'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+}
+
+task run(type: JavaExec) {
+    main = 'com.example.App'
+    classpath = sourceSets.main.runtimeClasspath
+}
+.......
+gradle build
+gradle run
+
+
+PROGRAM:05
+
+
+✅ Install Java JDK (SDK)
+	1.	Download and install the latest JDK (Java Development Kit) for Windows (x64 installer).
+	2.	After installation, go to:(C:\Program Files\Java\jdk-<version>\bin)
+        3. Copy the path to the bin folder.
+	4.	Set environment variable:
+	•	Edit the Path system variable.
+	•	Add the copied JDK bin path.
+	5.	Save the changes.
+	6.	Verify Java installation: Open Command Prompt and run:(java --version)
+
+Step 2: Download Jenkins WAR File
+Go to: https://www.jenkins.io/download/
+go to dowmload page click on windows ,the installer will get downloaded
+open installer and finish the set up
+open jenkin folder file and copy it and paste to local disk:C
+Open Command Prompt.-
+cd C:\Jenkins
+java -jar jenkins.war --httpPort=9090
+open browser and run (http://localhost:9090)
+in this path -C:\Users\YourName\.jenkins\secrets\initialAdminPassword,it will give password 
+Paste the password → Click Continue
+Click Install Suggested Plugins
+Fill admin details → Click Save and Continue
+Click Save and Finish
+Click Start using Jenkins
+
+
+PROGRAM:06
+
+
+🔹 Step 1: Install Maven Plugin in Jenkins
+	1.	Go to Jenkins Dashboard
+	2.	Click on Manage Jenkins → Plugins → Installed
+	3.	Search for “Maven Integration Plugin”
+	4.	If not installed, go to the Available tab and install it.
+
+⸻
+
+🔹 Step 2: Add Maven in Jenkins
+	1.	Go to Dashboard → Manage Jenkins → Global Tool Configuration
+	2.	Scroll to Maven
+	3.	Click “Add Maven”
+	4.	Add the name (e.g., Maven) and the path to your local Maven installation (e.g., C:\apache-maven-3.9.6)
+	5.	Save the changes.
+
+⸻
+
+🔹 Step 3: Create a Maven Project in Jenkins
+	1.	Go to New Item
+	2.	Enter a project name
+	3.	Select “Maven Project”, then click OK
+
+⸻
+
+🔹 Step 4: Set Source Code Management to Git
+	1.	In your project configuration, scroll to Source Code Management
+	2.	Change it from None to Git
+
+⸻
+
+🔹 Step 5: Create a Maven Project Locally Using Git Bash
+
+Open Git Bash and run:
+mvn archetype:generate -DgroupId=com.example -DartifactId=maven-test -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+cd maven-test
+git init
+git add .
+git commit -m "Initial commit with pom.xml"
+1.	Go to GitHub and create a new public repository (e.g., maven-test)
+	2.	Run the following commands in Git Bash:
+git remote add origin <your GitHub repo URL>
+git push -u origin main
+1.	Go back to Jenkins → Your Project → Configure
+	2.	Under Source Code Management → Git, paste your GitHub repo URL
+	3.	Scroll down to Build → Goals and Options, enter:(install) ,click save .
+click on build now
+
+PROGRAM:07
+
+1) Open Ubuntu Terminal
+2) Install Ansible
+Run the following commands one by one:
+
+sudo apt update
+sudo apt upgrade -y
+sudo apt install software-properties-common -y
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible -y
+ansible --version  # Confirm Ansible installation
+3) Create a working directory
+
+mkdir java_ansible
+cd java_ansible
+4) Create an Ansible inventory file
+
+nano inventory.ini
+Paste the following content:
+
+[local]
+localhost ansible_connection=local
+Save and exit: Ctrl + X, then Y, then Enter
+
+5) Create the Java program
+
+nano HelloWorld.java
+Paste the following code:
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello from Ansible!");
+    }
+}
+Save and exit: Ctrl + X, then Y, then Enter
+
+6) Create Ansible Playbook
+
+nano run-java.yml
+Paste the following playbook code:
+
+---
+- name: Compile and run HelloWorld.java in current directory
+  hosts: localhost
+  gather_facts: yes
+  tasks:
+
+    - name: Ensure Java is installed
+      apt:
+        name: default-jdk
+        state: present
+      become: yes
+
+    - name: Compile HelloWorld.java
+      command: javac HelloWorld.java
+      args:
+        chdir: "{{ ansible_env.PWD }}"
+
+    - name: Run HelloWorld
+      command: java HelloWorld
+      args:
+        chdir: "{{ ansible_env.PWD }}"
+      register: output
+
+    - name: Display output
+      debug:
+        msg: "{{ output.stdout }}"
+Save and exit: Ctrl + X, then Y, then Enter
+
+7) Run the Playbook
+Choose either of the two commands:
+
+ansible-playbook -i inventory.ini run-java.yml
+OR, if you want to be prompted for the sudo password:
+
+ansible-playbook -i inventory.ini run-java.yml --ask-become-pass
+
+
+PROGRAM:08
+
+1.mvn archetype:generate -DgroupId=com.example -DartifactId=demo    -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+2.  cd demo
+3.  git init
+4.  git add .
+5.  git commit -m "Initial commit"
+6.  Go to your github account create one repository name “program8”
+ 7. (On your github account you’ll get one url)    copy and paste this     command from there-
+                                  git remote add origin <your-repo-url>
+8.   git push -u origin main
+{      if error comes the check  
+a)git status
+If it shows you are in master branch ,change it to main by using command 
+b)git branch -M main
+      c)   git push -u origin main    }
+
+9. Open jenkins (in your browser run this - http://localhost:8080) 
+		If this does not run directly on your browser the,
+			Go to command prompt(open in administrator)
+			Type- java -jar (path of jenkin.war from your c drive)
+10. Open jenkins provide your username and password
+		Go to dashboard :
+a)Click on new item 
+
+b)Enter a project name (MavenCI)
+
+c)Select “Pipeline” Click OK
+
+d)Scroll Down to the Pipeline Section
+
+e)Set the Definition to Pipeline Script
+
+f)Inside that box ,put this code-
+
+pipeline {
+    agent any
+
+    tools {
+        maven 'Apache Maven 3.9.9'  // Make sure this Maven tool is configured in Jenkins global tools
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Sakshi-03012004/program8.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                bat 'mvn clean install'
+            }
+        }
+
+        stage('Archive Artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
+            }
+        }
+    }
+}
+
+       
+
+g)Click Save (at the bottom)
+h) Click Build Now
+i) Console Output.(it should show Finished: SUCCESS)
+
+
+              PART-B
+Open ubuntu
+1. vi hosts.ini
+Inside that write code -
+[local]
+localhost ansible_connection=local
+
+2. Vi deploy.yml
+ Inside that write code - 
+- name: Deploy artifact locally
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Copy JAR file from Jenkins to deploy directory
+      copy:
+        src: /mnt/c/Users/ASUS/.jenkins/workspace/mavenCI/target/demo-1.0-SNAPSHOT.jar
+        dest: /mnt/c/Users/ASUS/deployed/demo-1.0-SNAPSHOT.jar
+
+To find the source and destination -
+- Open Jenkins.
+- Go to your Maven job → Build History → Workspace.
+- Navigate to the target/ folder and confirm the JAR    file  exists
+- then in the src path provide your project name  which you have given in your jenkin project (example-mavenCI)
+
+- Go to your system directory (example=asus) and create a folder named deployed manually if it does not exist.
+ copy the demo-1.0-SNAPSHOT.jar file into it.
+/mnt/ is used because as the forward slash does not work in the unix system
+
+3. ansible-playbook -i hosts.ini deploy.yml
+
+4. To check whether it exist ,run:
+ ls /mnt/c/Users/ASUS/deployed
+  It should give-
+    demo-1.0-SNAPSHOT.jar
+
+PROGRAM:09
+
+Step 1: Create a Microsoft Account (if you don’t have one)
+1.Open Safari or any browser.
+2.Go to: https://signup.live.com
+3.Sign up for a Microsoft account.
+Step 2: Sign Up for Azure DevOps
+1.Open browser and go to: https://dev.azure.com
+2.Click "Start Free" or "Sign in".
+3.Use your Microsoft account to log in
+Step 3: Create an Azure DevOps Organization
+1.After signing in, it will ask you to create an organization. 
+If you are not able to find create organization then  click on this link below ,it will directly take you to create organization page
+https://aex.dev.azure.com/me
+2.Give a name for your org (e.g., ksakshi33333).
+3.Choose region (you can select the default).
+4.Click Continue.
+
+Step 4: Create a Project
+1.Click on "New Project".
+2.Enter:
+○Project name (e.g., MyFirstProject)
+○Visibility: Choose Private or Public.
+3.Click Create.
+
+Now your Azure DevOps Project is ready!
+
+
+ 
+   
+	
+
+
+
+
+
+
+
+
+
+
