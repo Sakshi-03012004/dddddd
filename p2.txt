@@ -1,0 +1,159 @@
+ 2. **Backend Setup (Node.js + Express)**
+Install Node.js (LTS)**
+
+brew install node
+
+Check:
+
+node -v
+npm -v
+...................................
+ ➤ **Setup Test Express Project**
+
+mkdir backend-test
+cd backend-test
+npm init -y
+npm install express
+//inside backent-test (code .)
+
+Create a file `index.js`:
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+app.get('/', (req, res) => res.send('Hello Backend'));
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+Run:
+
+node index.js
+
+Open: [http://localhost:3000](http://localhost:3000)
+......................................................
+
+ **Install nodemon (optional)**
+
+npm install -g nodemon
+
+Run with:
+
+nodemon index.js
+..........................................
+ **Frontend Setup – Step by Step (React using Vite)**
+
+ Step 1: Create React App using Vite
+
+Open your terminal and type:
+
+
+npm create vite@latest frontend-app -- --template react
+
+When asked for the app name, use `frontend-app` (or press Enter to accept).
+
+ Step 2: Go into your project folder
+
+cd frontend-app
+
+ Step 3: Install all the packages
+
+npm install
+
+
+ Step 4: Start the React app
+
+npm run dev
+
+
+Now open the link it gives (usually: [http://localhost:5173](http://localhost:5173))
+You’ll see the React page running in your browser. That means it works!
+...................................................................
+
+## 📁 **Simple Project Structure Explanation**
+
+You’ll have **two folders** in one main project folder:
+
+```
+afford-assessment/
+├── question1/
+│   └── (your code for question 1)
+├── question2/
+│   └── (your code for question 2)
+└── .gitignore
+```
+
+### Example:
+
+* If **Question 1** asks for a backend API → put your Express code in `question1/`
+* If **Question 2** is a React frontend task → put your React code in `question2/`
+
+........................................
+ .gitignore File (What to ignore in Git)
+
+Create a file called `.gitignore` inside `afford-assessment/` and add this:
+
+```
+node_modules/
+.DS_Store
+.env
+```
+
+This tells Git **not to upload big or secret files** to GitHub.
+
+---
+
+## 🌐 GitHub Setup in Very Easy Steps
+
+### ✅ Step 1: Create a folder for your project
+
+```bash
+mkdir afford-assessment
+cd afford-assessment
+mkdir question1 question2
+```
+
+### ✅ Step 2: Initialize Git
+
+```bash
+git init
+```
+
+### ✅ Step 3: Create and add `.gitignore`
+
+```bash
+touch .gitignore
+```
+
+Then open `.gitignore` and add:
+
+```
+node_modules/
+.env
+.DS_Store
+```
+
+### ✅ Step 4: First Git commit
+
+```bash
+git add .
+git commit -m "Initial commit with folder structure"
+```
+
+### ✅ Step 5: Create GitHub repo
+
+1. Go to [https://github.com](https://github.com)
+2. Click **New Repository**
+3. Name it as your **college roll number** (example: `1AI21IS123`)
+4. **Do NOT** check "Initialize with README"
+
+### ✅ Step 6: Link your local folder to GitHub
+
+In terminal:
+
+```bash
+git remote add origin https://github.com/your-username/your-rollnumber.git
+git branch -M main
+git push -u origin main
+```
+ 
+
